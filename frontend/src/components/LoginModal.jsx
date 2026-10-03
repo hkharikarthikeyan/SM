@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function LoginModal({ onLoginSuccess }) {
   const [mode, setMode] = useState('login'); // 'login' or 'register'
@@ -21,8 +22,8 @@ export default function LoginModal({ onLoginSuccess }) {
     setLoading(true);
 
     const endpoint = mode === 'register'
-      ? 'http://localhost:5001/api/supermarket/auth/register'
-      : 'http://localhost:5001/api/supermarket/auth/login';
+      ? `${API_BASE_URL}/api/supermarket/auth/register`
+      : `${API_BASE_URL}/api/supermarket/auth/login`;
 
     const payload = mode === 'register' ? {
       name,

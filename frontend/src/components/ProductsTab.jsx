@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function ProductsTab({ token }) {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,7 @@ export default function ProductsTab({ token }) {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const url = `http://localhost:5001/api/supermarket/products?category=${selectedCategory}&search=${searchQuery}`;
+      const url = `${API_BASE_URL}/api/supermarket/products?category=${selectedCategory}&search=${searchQuery}`;
       const res = await fetch(url, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -43,7 +44,7 @@ export default function ProductsTab({ token }) {
 
   const handleToggleAvailability = async (productId, currentVal) => {
     try {
-      const res = await fetch(`http://localhost:5001/api/supermarket/products/${productId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/supermarket/products/${productId}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ export default function ProductsTab({ token }) {
     setAddLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5001/api/supermarket/products', {
+      const res = await fetch(`${API_BASE_URL}/api/supermarket/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

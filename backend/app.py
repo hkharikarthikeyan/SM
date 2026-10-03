@@ -16,9 +16,20 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'grocerry-supermarket-secret-
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+# Root Health Check Route
+@app.route('/')
+def home():
+    return jsonify({
+        'status': 'online',
+        'service': 'Supermarket Backend API',
+        'message': 'API is running successfully on Vercel!'
+    }), 200
+
 # Global Exception Handler with CORS
 @app.errorhandler(Exception)
 def handle_exception(e):
+    if getattr(e, 'code', 500) == 404:
+        return jsonify({'success': False, 'message': '404 Not Found'}), 404
     print(f"Server Error in FGM-Supermarket Backend: {e}")
     response = jsonify({
         'success': False,

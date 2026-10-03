@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from './config';
 import Navbar from './components/Navbar';
 import LoginModal from './components/LoginModal';
 import OrdersTab from './components/OrdersTab';
@@ -39,7 +40,7 @@ export default function App() {
     if (!token) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5001/api/supermarket/orders', {
+      const res = await fetch(`${API_BASE_URL}/api/supermarket/orders`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

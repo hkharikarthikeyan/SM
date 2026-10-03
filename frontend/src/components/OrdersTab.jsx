@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function OrdersTab({ orders, token, onOrderUpdate }) {
   const [filterStatus, setFilterStatus] = useState('ALL');
@@ -7,7 +8,7 @@ export default function OrdersTab({ orders, token, onOrderUpdate }) {
   const handleStatusChange = async (orderId, newStatus) => {
     setUpdatingId(orderId);
     try {
-      const res = await fetch(`http://localhost:5001/api/supermarket/orders/${orderId}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/supermarket/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
