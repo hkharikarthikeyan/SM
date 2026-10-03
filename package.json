@@ -1,6 +1,9 @@
 {
   "name": "sm-root",
   "private": true,
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
     "build": "npm --prefix frontend run build"
   }
