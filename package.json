@@ -1,0 +1,7 @@
+{
+  "name": "sm-root",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend run build"
+  }
+}
